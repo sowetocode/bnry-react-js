@@ -9,7 +9,10 @@ class SliderContainer extends React.Component {
 
 	componentDidMount = () => { 
 		this.props.fetchImages();
-		//his.props.setDescription(this.props.slider.images[0].description,);
+		/*TODO: on first load - set correct tool tips, props are still null! use RxJS pipe functionality ?
+		 
+		this.props.setDescription(this.props.slider.images[0].description,);
+		*/
 	}
 	
 	renderSlides = () => {
@@ -24,19 +27,30 @@ class SliderContainer extends React.Component {
 
 	goToBackSlide = () => {
 		const { 
+			images, 
 			index, 
 			translateValue, 
 			setTranslateValue, 
 			setIndex,
-			setDescription
+			setDescription,
+			setDescriptionBack,
 		} = this.props
 	  
 		if(index === 0)
 			return;
-		  
-		setIndex(index + 1);
+		
+		/* TODO: Tool tip functionality for the back button
+		if(index <= images.length + 3) {
+			setDescriptionBack(images[index - 2].description);
+			setDescription(images[index].description);
+		} else {
+			setDescriptionBack(images[0].description);
+			setDescription("");
+		}
+		*/
+
+		setIndex(index - 1);
 		setTranslateValue(translateValue + this.slideWidth());
-		setDescription("xxx");
 	}
 
 	goToNextSlide = () => {
@@ -63,11 +77,9 @@ class SliderContainer extends React.Component {
 			setDescription(images[0].description);
 			setDescriptionBack("");
 		}
-
 		
 		setIndex(index + 1);
 		setTranslateValue(translateValue - this.slideWidth());
-		//setDescription(images[index - 1].description,);
 		
 	}
 
@@ -75,35 +87,14 @@ class SliderContainer extends React.Component {
 		 return document.querySelector('.slide').clientWidth;
 	}
 
-	toolTipBack = () => {
-		const { 
-			images, 
-			index, 
-			translateValue,
-			setTranslateValue, 
-			setIndex,
-			setDescription
-		} = this.props;
-
-		console.log('toolTipBack', images[index - 1].description);
-		if(index === images.length - 1) {
-			return ;
-		}
-		console.log('toolTipBack', images[index - 1].description);
-		return images[index - 1].description ;
-
-		
-	}
 	
     render() {
 		const {
-			images,
-			index,
 			translateValue,
 			description,
 			descriptionBack
 			} = this.props
-		console.log('SliderContainer this.props', this.props);
+
 		return (
 				<div className="slider">
 					<div className="slider-wrapper"
@@ -115,10 +106,10 @@ class SliderContainer extends React.Component {
 					</div>
 
 					<Button 
-					goToSlide={this.goToBackSlide} 
-					className="btnBack"
-					text="Back"
-					toolTip={descriptionBack}
+						goToSlide={this.goToBackSlide} 
+						className="btnBack"
+						text="Back"
+						toolTip={descriptionBack}
 					/>
 	
 					<Button 
