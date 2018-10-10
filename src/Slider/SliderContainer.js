@@ -1,7 +1,7 @@
 import React from 'react';  
 import {connect} from 'react-redux';  
 import {bindActionCreators} from 'redux';  
-import Image from './Image';
+import Slider from './Slider';
 import Button from './Button';
 import * as SliderActions from './actions'
 
@@ -15,7 +15,7 @@ class SliderContainer extends React.Component {
 	renderSlides = () => {
 		const { images } = this.props
 		return images.map((curr, i) =>
-			<Image 
+			<Slider 
 				key={i} 
 				image={this.props.images[i]} 
 			/>
@@ -105,9 +105,7 @@ class SliderContainer extends React.Component {
 			} = this.props
 		console.log('SliderContainer this.props', this.props);
 		return (
-			<div>
 				<div className="slider">
-
 					<div className="slider-wrapper"
 						style={{
 						transform: `translateX(${translateValue}px)`,
@@ -115,22 +113,21 @@ class SliderContainer extends React.Component {
 						}}>
 						{ this.renderSlides() }
 					</div>
+
+					<Button 
+					goToSlide={this.goToBackSlide} 
+					className="btnBack"
+					text="Back"
+					toolTip={descriptionBack}
+					/>
+	
+					<Button 
+						goToSlide={this.goToNextSlide} 
+						className="btnNext"
+						text="Next"
+						toolTip={description}
+					/>					
 				</div>
-
-				<Button 
-				goToSlide={this.goToBackSlide} 
-				className="btnBack"
-				text="Back"
-				toolTip={descriptionBack}
-				/>
-
-				<Button 
-					goToSlide={this.goToNextSlide} 
-					className="btnNext"
-					text="Next"
-					toolTip={description}
-				/>
-			</div>
 		)
     }
   }

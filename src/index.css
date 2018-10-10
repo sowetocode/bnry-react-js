@@ -36,28 +36,38 @@ code {
 
 .btnBack {
   position: absolute;
-  top: 75%;
-  left: 25px;
-  z-index: 999;
-  padding: 10px 15px;
-  background: #555;
-  color: white;
-  border-radius: 5px;
-  margin: 1em;
+  top: 0%;
+  left: 1px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  color: black;
+  border-radius: 0px;
+  border: none;
   cursor: pointer;
+  height:100%;
+  overflow: hidden;
+  outline:none;
+  text-decoration:underline;
+  font-weight: bolder;
+  text-shadow: 0px 1px whitesmoke;
 }
 
 .btnNext {
   position: absolute;
-  top: 75%;
-  right: 25px;
-  z-index: 999;
-  padding: 10px 15px;
-  background: #555;
-  color: white;
-  border-radius: 5px;
-  margin: 1em;
+  top: 0%;
+  right: 1px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  color: black;
+  border-radius: 0px;
+  border: none;
   cursor: pointer;
+  height:100%;
+  overflow: hidden;
+  outline:none;
+  text-decoration:underline;
+  font-weight: bold;
+  text-shadow: 0px 1px whitesmoke;
 }
 
 .tooltip {
